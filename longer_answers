@@ -1,0 +1,240 @@
+beatles = [
+  {
+    name: nil,
+    nickname: "The Smart One"
+  },
+  {
+    name: nil,
+    nickname: "The Funny One"
+  },
+  {
+    name: nil,
+    nickname: "The Cute One"
+    },
+  {
+    name: nil,
+    nickname: "The Quiet One"
+  }
+]
+
+i = 0
+while i < beatles.length
+  # Your code here!
+  case beatles[i][:nickname]
+  when "The Smart One"
+    beatles[i][:name] = "John"
+  when "The Funny One"
+    beatles[i][:name] = "Ringo"
+  when "The Cute One"
+    beatles[i][:name] = "Paul"
+  when "The Quiet One"
+    beatles[i][:name] = "George"
+    end
+  i += 1
+end
+
+i = 0
+while i < beatles.length
+  puts "Hi, I'm #{beatles[i][:name]}.  I'm #{beatles[i][:nickname]}!"
+  i += 1
+end
+
+
+
+
+
+
+
+class UrlParser
+
+
+  def initialize(url)
+    @url = url
+
+
+  end
+
+  def scheme
+    scheme_name = @url.split(":")[0]
+  end
+
+  def domain
+    @url.slice(/w.*om/)
+  end
+
+  def port
+    port_num = @url.slice(/6.*0/)
+     if scheme == "http" && port_num.nil?
+       port_num = "80"
+     elsif scheme == "https" && port_num.nil?
+       port_num = "443"
+     else
+       port_num
+     end
+  end
+
+  def path
+    result = @url.split("/").last.split("?").first
+    if result == ""
+      nil
+    else
+      result
+    end
+  end
+
+  def query_string
+    array = @url.split("?").last.split("#").first.split(/[=, &]/)
+    # {array[0] => array[1], array[2] => array[3]}
+    h = {}
+    len = array.length
+    index = 0
+    while index < len
+      h [array[index]] = array[index + 1]
+      index += 2
+    end
+    return h
+  end
+
+  def fragment_id
+    @url.split("#").last
+  end
+
+
+end
+
+
+
+
+
+
+
+
+## REPL_GAME
+
+def what_drink
+  while true
+      beverage = gets.chomp.downcase
+      if (beverage == "yes")
+        puts "🍹 " * 50
+        puts " Please choose one \n We have: 1)Coke  2)Jarritos  3)Horchata  4)Water"
+        good_choice
+        break
+      elsif (beverage == "no")
+        puts "🍹 " * 50
+        puts "No problem! Your food will be out shortly!"
+        break
+      else
+        puts "Please either choose \"yes or no\""
+      end
+  end
+end
+
+
+
+def racso_special
+  x = gets.chomp.downcase
+  if(x == "yes")
+    puts "🌮" * 50
+    puts "Okay how many would you like to order?"
+    numberOfTacos = gets.chomp.to_i
+    l = 0
+    while l < 1
+      if(numberOfTacos < 1)
+        puts "Please enter your answer in the form of a positive number (e.g. 1,2,3)"
+        numberOfTacos = gets.chomp.to_i
+      else
+        l = 1
+      end
+    end
+      if numberOfTacos.to_i > 0
+        puts "🌮" * 50
+        puts "#{numberOfTacos} Rasco Special coming right up!"
+      else
+        puts "If you didn't want any you should have just said \"no\"?"
+        puts "Your order is coming right up. Thank you for buying at Racso's Taco Truck!"
+      end
+  elsif(x == "no")
+    puts "🌮" * 50
+    puts "Alright! It was just a suggestion!"
+  else
+    puts "Please respond with either \"yes\" or \"no\"!"
+    racso_special
+  end
+
+end
+
+
+
+def good_choice
+  while true
+      drink = gets.chomp
+      if (drink == "1" || drink == "1)Coke" || drink == "Coke" || drink == "2" || drink == "2)Jarritos" || drink == "Jarritos" || drink == "3" || drink == "3)Horchata" || drink == "Horchata" || drink == "4" || drink == "4)" || drink == "Water" || drink == "")
+        puts "🍹 " * 50
+        puts "Good choice! Here is your drink, your food will be out shortly!"
+        break
+      else
+        puts "🍹 " * 50
+        puts "Please choose one of the options given to you"
+      end
+  end
+end
+
+
+
+
+
+i = 0
+
+puts "Welcome to Racso's Taco Truck 🌮  🚚  🌮  🚚  🌮  🚚  \"The BEST taco's in Miami\""
+while i < 1
+  puts "What would you like to order?"
+  puts "Options: 1)Miami Taco   2)South Beach Taco   3)Racso Special   4)Salad"
+
+  taco = gets.chomp
+  puts "🌮" * 50
+  if (taco == "1" || taco == "1)Miami Taco" || taco == "Miami Taco" || taco == "2" || taco == "2)South Beach Taco" || taco == "South Beach Taco" || taco == "3" || taco =="3)Racso Special" || taco == "Racso Special")
+  puts "Great Choice!!!!!"
+  puts "How many would you like to order?"
+    num_tacos = gets.chomp.to_i
+    z = 0
+    while z < 1
+      if(num_tacos < 1)
+        puts "Please enter your answer in the form of a positive number (e.g. 1,2,3)"
+        num_tacos = gets.chomp.to_i
+      else
+        z = 1
+      end
+    end
+
+  puts "🌮" * 50
+    if num_tacos.to_i > 0
+        if(taco == "Miami Taco" || taco == "1" || taco == "1)Miami Taco")
+          puts "#{num_tacos} Miami Tacos coming right up!"
+          puts "Hey I would recommentd you also try the Rasco Special. Are you Interested?"
+          racso_special
+          puts "🍹 " * 50
+          puts "Would you like a drink with your order? \"yes or no\""
+          what_drink
+          i = 1
+        elsif(taco == "2" || taco == "2)South Beach Taco" || taco == "South Beach Taco")
+          puts "#{num_tacos} South Beach Tacos coming right up!"
+          puts "Hey I would recommentd you also try the Rasco Special. Are you Interested?"
+          racso_special
+          puts "🍹 " * 50
+          puts "Would you like a drink with your order? \"yes or no\""
+          what_drink
+          i = 1
+        elsif (taco == "3" || taco == "3)Racso Taco" || taco == "Racso Taco")
+          puts "#{num_tacos} Racso Tacos coming right up!"
+          puts "🍹 " * 50
+          puts "Would you like a drink with your order? \"yes or no\""
+          what_drink
+          i = 1
+        end
+    end
+  elsif (taco == "4" || taco == "4)Salad" || taco == "Salad")
+    puts "Seriously??? this is a TACO TRUCK!!! That was a trick option and you failed miserably. How about you try some tacos instead."
+  else
+    puts "Please enter a correct option. For Example if you would like to order Miami Taco enter: 1"
+  end
+end
